@@ -1,12 +1,14 @@
 Bootstrap: docker
 From: ubuntu:24.04
 
-%files
-fastqc_v0.12.1.zip /opt/fastqc_v0.12.1.zip
-
 %post
-apt update && apt install -yy default-jre unzip perl
-cd /opt && unzip fastqc_v0.12.1.zip
+export DEBIAN_FRONTEND=noninteractive 
+apt update && apt install -yy default-jre unzip perl wget
+wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip && \
+  mv fastqc_v0.12.1.zip /opt && \
+  cd /opt && \
+  unzip fastqc_v0.12.1.zip && \
+  rm fastqc_v0.12.1.zip
 
 %environment
 export PATH=/opt/FastQC:$PATH
