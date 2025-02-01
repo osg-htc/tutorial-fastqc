@@ -5,3 +5,5 @@ tar xvf sub.tar.gz
 mv sub/* data/
 rm sub.tar.gz
 rm -r sub
+
+echo "Data download complete."
